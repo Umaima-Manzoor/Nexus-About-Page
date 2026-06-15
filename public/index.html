@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nexus — About Us</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <a href="#" class="nav-logo">Nexus<span class="dot"></span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#mission">Mission</a></li>
+      <li><a href="#team">Team</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon" id="themeIcon"></i></button>
+      <button class="admin-toggle" id="adminToggle" aria-label="Open admin panel"><i class="fas fa-shield-halved"></i><span>Admin</span></button>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <section class="hero-about" id="about">
+    <div class="hero-about-bg" aria-hidden="true"><div class="hero-about-orb hero-about-orb-1"></div><div class="hero-about-orb hero-about-orb-2"></div></div>
+    <div class="hero-about-content">
+      <span class="section-label reveal">About <span id="heroCompanyName">Nexus</span></span>
+      <h1 class="hero-title reveal reveal-delay-1" id="heroTitle">We Build What<br><span class="highlight">Matters Most</span></h1>
+      <p class="hero-subtitle reveal reveal-delay-2" id="heroDescription">Loading from database...</p>
+      <div class="hero-stats reveal reveal-delay-3" id="heroStats"></div>
+    </div>
+  </section>
+
+  <section class="section mission-section" id="mission">
+    <div class="mission-grid">
+      <div class="mission-card reveal"><div class="mission-icon"><i class="fas fa-compass"></i></div><h2>Our Mission</h2><p id="missionText">Loading...</p></div>
+      <div class="mission-card reveal reveal-delay-2"><div class="mission-icon vision"><i class="fas fa-eye"></i></div><h2>Our Vision</h2><p id="visionText">Loading...</p></div>
+    </div>
+  </section>
+
+  <section class="section team-section" id="team">
+    <div class="team-header"><div class="reveal"><span class="section-label">The People</span><h2 class="section-title">Meet Our Team</h2><p class="section-subtitle">The talented individuals behind every project. Each brings unique expertise and a shared commitment to excellence.</p></div></div>
+    <div class="team-controls reveal">
+      <div class="search-box"><i class="fas fa-search"></i><input type="text" id="searchInput" placeholder="Search by name..." aria-label="Search team members"><button class="search-clear" id="searchClear" aria-label="Clear search" style="display:none;"><i class="fas fa-times"></i></button></div>
+      <div class="filter-group" id="filterGroup" role="group" aria-label="Filter by role"></div>
+    </div>
+    <div class="team-grid" id="teamGrid"></div>
+    <div class="empty-state" id="emptyState" style="display:none;"><i class="fas fa-users-slash"></i><p>No team members match your search.</p><button class="btn-secondary" id="resetFilters">Clear Filters</button></div>
+  </section>
+
+  <section class="section cta-section" id="contact"><div class="reveal"><span class="section-label">Get in Touch</span><h2 class="section-title">Want to Join the Team?</h2><p class="section-subtitle">We're always looking for talented people who share our passion for building great products.</p><button class="btn-primary" id="contactBtn"><i class="fas fa-paper-plane"></i> Contact Us</button></div></section>
+
+  <footer class="footer"><div class="footer-inner"><a href="#" class="nav-logo">Nexus<span class="dot"></span></a><p class="footer-copy">2024 Nexus. All rights reserved.</p><div class="footer-socials"><a href="#" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a><a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a><a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></div></div></footer>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="memberModal" role="dialog" aria-modal="true"><div class="modal-content"><button class="modal-close" id="modalClose" aria-label="Close"><i class="fas fa-times"></i></button><div class="modal-body" id="modalBody"></div></div></div>
+
+  <!-- Admin Panel -->
+  <div class="admin-overlay" id="adminOverlay"></div>
+  <aside class="admin-panel" id="adminPanel" role="complementary" aria-label="Admin panel">
+    <div class="admin-header"><h2><i class="fas fa-shield-halved"></i> Admin Panel</h2><button class="admin-close" id="adminClose" aria-label="Close admin"><i class="fas fa-times"></i></button></div>
+    <div class="admin-tabs">
+      <button class="admin-tab active" data-tab="company"><i class="fas fa-building"></i> Company</button>
+      <button class="admin-tab" data-tab="team"><i class="fas fa-users"></i> Team</button>
+            <!-- Add this right before the closing </div> of admin-body -->
+      <div class="admin-tab-content" id="tab-database">
+        <h3>Database Management</h3>
+        <p class="db-desc">Manage the underlying SQLite database. Changes here affect the entire application instantly.</p>
+        <div class="db-actions">
+          <div class="db-action-card">
+            <div class="db-action-icon"><i class="fas fa-download"></i></div>
+            <h4>Export Data</h4>
+            <p>Download all company and team data as a JSON file.</p>
+            <button class="btn-secondary" id="exportBtn"><i class="fas fa-file-export"></i> Export JSON</button>
+          </div>
+          <div class="db-action-card">
+            <div class="db-action-icon import"><i class="fas fa-upload"></i></div>
+            <h4>Import Data</h4>
+            <p>Replace all database data from a JSON file.</p>
+            <input type="file" id="importFile" accept=".json" style="display:none;">
+            <button class="btn-secondary" id="importBtn"><i class="fas fa-file-import"></i> Import JSON</button>
+          </div>
+          <div class="db-action-card">
+            <div class="db-action-icon reset"><i class="fas fa-rotate-left"></i></div>
+            <h4>Reset to Defaults</h4>
+            <p>Restore original sample data. This cannot be undone.</p>
+            <button class="btn-secondary" id="resetBtn" style="border-color: var(--error); color: var(--error);"><i class="fas fa-trash-can"></i> Reset Database</button>
+          </div>
+        </div>
+        <div class="db-stats">
+          <h4>Current Database Stats</h4>
+          <div class="db-stats-grid">
+            <div class="db-stat"><span class="db-stat-val" id="dbTeamCount">0</span><span class="db-stat-lbl">Team Members</span></div>
+            <div class="db-stat"><span class="db-stat-val" id="dbRolesCount">0</span><span class="db-stat-lbl">Unique Roles</span></div>
+            <div class="db-stat"><span class="db-stat-val" id="dbStatus">Online</span><span class="db-stat-lbl">SQLite Status</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="admin-body">
+      <!-- Company Tab -->
+      <div class="admin-tab-content active" id="tab-company">
+        <h3>Edit Company Information</h3>
+        <form id="companyForm" novalidate>
+          <div class="form-group"><label for="companyName">Company Name *</label><input type="text" id="companyName" required><span class="form-error" id="companyNameError"></span></div>
+          <div class="form-group"><label for="companyTagline">Hero Tagline</label><input type="text" id="companyTagline"></div>
+          <div class="form-group"><label for="companyDescription">Short Description *</label><textarea id="companyDescription" rows="3" required></textarea><span class="form-error" id="companyDescError"></span></div>
+          <div class="form-group"><label for="companyMission">Mission Statement *</label><textarea id="companyMission" rows="3" required></textarea><span class="form-error" id="companyMissionError"></span></div>
+          <div class="form-group"><label for="companyVision">Vision Statement *</label><textarea id="companyVision" rows="3" required></textarea><span class="form-error" id="companyVisionError"></span></div>
+          <div class="form-actions"><button type="submit" class="btn-primary"><i class="fas fa-save"></i> Save Company Info</button></div>
+        </form>
+      </div>
+      <!-- Team Tab -->
+      <div class="admin-tab-content" id="tab-team">
+        <div class="admin-form-section">
+          <h3 id="formTitle">Add New Member</h3>
+          <form id="memberForm" novalidate>
+            <input type="hidden" id="memberId" value="">
+            <div class="form-group"><label for="memberName">Full Name *</label><input type="text" id="memberName" required><span class="form-error" id="nameError"></span></div>
+            <div class="form-group"><label for="memberRole">Role *</label><select id="memberRole" required><option value="">Select a role...</option><option value="Developer">Developer</option><option value="Designer">Designer</option><option value="Manager">Manager</option><option value="DevOps">DevOps</option><option value="Data Scientist">Data Scientist</option><option value="Marketing">Marketing</option></select><span class="form-error" id="roleError"></span></div>
+            <div class="form-group"><label for="memberImage">Image URL</label><input type="url" id="memberImage" placeholder="https://..."><small>Leave empty to use upload</small></div>
+            <div class="form-group"><label for="memberImageUpload">Or Upload Image</label><input type="file" id="memberImageUpload" accept="image/*"><small>Max 500KB</small><div class="upload-preview" id="uploadPreview" style="display:none;"><img id="uploadPreviewImg" src="" alt="Preview"><button type="button" id="removeUpload" aria-label="Remove"><i class="fas fa-times"></i></button></div></div>
+            <div class="form-group"><label for="memberBio">Short Bio *</label><textarea id="memberBio" rows="3" required></textarea><span class="form-error" id="bioError"></span></div>
+            <div class="form-row">
+              <div class="form-group"><label for="memberLinkedIn">LinkedIn URL</label><input type="url" id="memberLinkedIn"></div>
+              <div class="form-group"><label for="memberGitHub">GitHub URL</label><input type="url" id="memberGitHub"></div>
+            </div>
+            <div class="form-actions"><button type="submit" class="btn-primary" id="formSubmitBtn"><i class="fas fa-plus"></i> Add Member</button><button type="button" class="btn-secondary" id="formCancelBtn" style="display:none;">Cancel</button></div>
+          </form>
+        </div>
+        <div class="admin-list-section"><h3>Manage Members (<span id="adminCount">0</span>)</h3><div class="admin-list" id="adminList"></div></div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="toast-container" id="toastContainer"></div>
+  <script src="script.js"></script>
+</body>
+</html>
