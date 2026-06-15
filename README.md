@@ -100,8 +100,7 @@ nexus-about-fullstack/
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/nexus-about-fullstack.git
-   cd nexus-about-fullstack
+   git clone https://github.com/Umaima-Manzoor/Nexus-About-Page.git
    ```
 2. **Install dependencies**
    ```bash
