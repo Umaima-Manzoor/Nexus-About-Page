@@ -21,9 +21,6 @@ A complete full‑stack web application featuring a company about page, a dynami
 | Back‑end: Node.js + Express | ✅ |
 | Database: SQLite (persistent storage) | ✅ |
 | Data fetched from database (no localStorage) | ✅ |
-| Bonus: Export database to JSON | ✅ |
-| Bonus: Import database from JSON | ✅ |
-| Bonus: Reset database to default values | ✅ |
 
 <br>
 
@@ -89,9 +86,6 @@ nexus-about-fullstack/
 | `/api/team` | POST | Add new team member (multipart/form‑data) |
 | `/api/team/:id` | PUT | Update member (multipart/form‑data) |
 | `/api/team/:id` | DELETE | Delete member |
-| `/api/export` | GET | Download full database as JSON |
-| `/api/import` | POST | Replace database with uploaded JSON |
-| `/api/reset` | POST | Reset database to default seed data |
 
 <br>
 
