@@ -77,7 +77,6 @@ nexus-about-fullstack/
 ### Admin Panel (slide‑out)
 - **Company Tab** – Edit company name, tagline, description, mission, vision.
 - **Team Tab** – Add new member (with optional image upload), edit existing member, delete member (with double‑click confirmation).
-- **Database Tab** – Export all data as JSON, import data from a JSON file, reset to default seeded data.
 
 <br>
 
