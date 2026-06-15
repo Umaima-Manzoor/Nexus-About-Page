@@ -35,6 +35,8 @@ A complete full‑stack web application featuring a company about page, a dynami
 - SQLite3
 - Multer (file uploads)
 
+<br>
+
 **Front‑end**
 - HTML5
 - CSS3 (CSS variables, Grid, Flexbox, animations)
@@ -45,6 +47,7 @@ A complete full‑stack web application featuring a company about page, a dynami
 <br>
 
 ## 📁 Project Structure
+```bash
 nexus-about-fullstack/
 ├── public/ # Static front‑end files
 │ ├── index.html
@@ -55,6 +58,7 @@ nexus-about-fullstack/
 ├── package-lock.json
 ├── server.js # Main Express server
 └── README.md
+```
 
 <br>
 
@@ -68,11 +72,14 @@ nexus-about-fullstack/
 - **Dark / Light Mode** – Persistent theme preference using CSS variables + localStorage.
 - **Responsive Design** – Works perfectly on desktop, tablet, and mobile.
 
+<br>
+
 ### Admin Panel (slide‑out)
 - **Company Tab** – Edit company name, tagline, description, mission, vision.
 - **Team Tab** – Add new member (with optional image upload), edit existing member, delete member (with double‑click confirmation).
 - **Database Tab** – Export all data as JSON, import data from a JSON file, reset to default seeded data.
 
+<br>
 
 ### Back‑end API
 | Endpoint | Method | Description |
