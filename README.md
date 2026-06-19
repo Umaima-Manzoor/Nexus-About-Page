@@ -45,7 +45,7 @@ A complete full‑stack web application featuring a company about page, a dynami
 
 ## 📁 Project Structure
 ```bash
-nexus-about-fullstack/
+nexus-about-page/
 ├── public/ # Static front‑end files
 │ ├── index.html
 │ ├── script.js
